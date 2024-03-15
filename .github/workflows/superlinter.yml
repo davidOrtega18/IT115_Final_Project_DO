@@ -1,0 +1,24 @@
+name: Super Linter
+
+on:
+  push:
+    branches:
+      - main
+      - master
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up Super-Linter
+      uses: github/super-linter@v4
+      env:
+        RUN_LOCAL: false
+        DEFAULT_BRANCH: main
+        VALIDATE_ALL_CODEBASE: false
+        VALIDATE_JAVA: true
+        FILTER_REGEX_EXCLUDE: '(.*/docs/.*|.*\.md|.*\.json|.*\.yml|.*\.yaml)'
